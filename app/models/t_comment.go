@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-//Comment model.
+//Comment model. 评价表
 type Comment struct {
 	Id         int64     `xorm:"not null pk autoincr INT(11)"`
 	Content    string    `xorm:"TEXT"`

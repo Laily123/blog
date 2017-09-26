@@ -15,7 +15,8 @@ import (
 var Xorm *xorm.Engine
 var Isinstalled bool
 
-//Init the Xorm.
+// 初始化 Xorm
+// 根据配置文件里的数据库类型调用相应的方法
 func InitXorm(appConfig *config.Config) error {
 	AppConfig = appConfig
 	dbdriver, _ := AppConfig.String("database", "database.driver")
@@ -26,6 +27,7 @@ func InitXorm(appConfig *config.Config) error {
 	return errors.New("no db driver")
 }
 
+// 初始化 mysql 数据库的方法
 func initMySQL() error {
 	dbname, _ := AppConfig.String("database", "database.dbname")
 	user, _ := AppConfig.String("database", "database.user")
@@ -37,6 +39,7 @@ func initMySQL() error {
 	return TestXorm("mysql", user, passwd, host, port, dbname, prefix)
 }
 
+// 测试数据库是否初始化成功
 func TestXorm(driver, user, pass, host, port, dbname string, prefix string) error {
 	var err error
 	Xorm, err = xorm.NewEngine(driver, fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8", user, pass, host, port, dbname))

@@ -4,10 +4,12 @@ import (
 	"blog/app/support"
 )
 
-var TABLE_BLOG string
-var TABLE_BLOG_TAG string
-var TABLE_TAG string
-var TABLE_CATEGORY string
+var (
+	TABLE_BLOG     string
+	TABLE_BLOG_TAG string
+	TABLE_TAG      string
+	TABLE_CATEGORY string
+)
 
 func InitModel() {
 	TABLE_BLOG = support.Xorm.TableInfo(new(Blog)).Name
